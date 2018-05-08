@@ -21,7 +21,8 @@ def connect(dbhost, dbport, dbuser, dbpasswd, dbName):
         conn = pymysql.connect(host=dbhost, port=int(dbport), user=dbuser, passwd=dbpasswd, db = dbName)
         # cur = conn.cursor()
         # cur.execute('show databases')
-        sysout.info(mTag, 'db connect success!')
+        sysout.info(mTag, 'db connect success! '+str(dbhost)+":"+str(dbport))
+        # sysout.info(mTag, str(conn))
         return conn
     except Exception as e:
         sysout.err(mTag, 'db connect failed : ' + str(e))

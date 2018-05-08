@@ -15,6 +15,8 @@ mTag = 'httpServer'
 
 mPort = 8002
 mHost = '127.0.0.1'
+# mHostAmi = '207.148.97.99'
+
 mServer = (mHost, mPort)
 
 
@@ -39,6 +41,7 @@ def saveEmail(email):
 
 def praseData(request_body):
     action = request_body['action']
+    sysout.info(mTag, 'action='+str(action))
     if action == 'save_email':
         #save email request
         return saveEmail(request_body['email'])
@@ -52,7 +55,7 @@ def application(environ, start_response):
     # 定义请求的类型和当前请求成功的code
     start_response('200 OK', [('Content-Type', 'application/json')])
     # environ是当前请求的所有数据，包括Header和URL，body
-    request_body = environ["wsgi.input"].read(int(environ.get("CONTENT_LENGTH", 0)))
+    request_body = environ["wsgi.input"].read(int(environ.get("CONTENT_LENGTH", 0))).decode('utf-8')
     sysout.info(mTag, 'request: '+str(request_body))
     request_body = json.loads(request_body)
     response = praseData(request_body)

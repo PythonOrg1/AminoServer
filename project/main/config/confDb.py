@@ -3,6 +3,7 @@ dbHost = 'localhost'
 dbPort = 3306
 dbUser = 'root'
 dbPwd = 'jerryyin'
+# dbPwd = 'dtx60pp'
 
 
 dbName = 'aminoDb'
